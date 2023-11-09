@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <form>
+                <div class="header-search">
+                    <label><input class="input-search"></label>
+                    <button class="btn-search"type="button"><img src="./img/search.svg" class="img-svg" ></button>
+                </div>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        <div class="cards">
+        </div>
+
+        <div class="modal">
+            <div class="modal-content">
+                <form class="form-modal">
+                    <div class="modal__id">
+                        <p>ID</p>
+                    </div>
+                    <div class = "modal__text">
+                        <p>Имя</p>
+                    </div>
+                    <label>
+                        <input class="modal__input" placeholder="Имя">
+                    </label>
+                    <div class = "modal__text">
+                        <p>Логин</p>
+                    </div>
+                    <label>
+                        <input class="modal__input" placeholder="Логин">
+                    </label>
+                    <div class = "modal__text">
+                        <p>Пароль</p>
+                    </div>
+                    <label>
+                        <input class="modal__input" placeholder="Пароль">
+                    </label>
+                    <div class="modal__buttons">
+                        <button class="modal__button save" type="button">
+                            Сохранить
+                        </button>
+                        <button class="modal__button cancel" type="button">
+                            Отмена
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+<script type="module"  src="./script/index.js"></script>
+</html>
