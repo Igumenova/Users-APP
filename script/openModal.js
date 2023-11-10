@@ -79,19 +79,23 @@ export const openModal = (item) => {
 
     //swipe
     const modalContent = modal.getElementsByClassName("modal-content")[0];
-    let touchstartX = 0;
-    let touchendX = 0;
+    let touchstartY = 0;
+    let touchendY = 0;
 
-    modalContent.addEventListener("touchstart", (e) => {
-        touchstartX = e.changedTouches[0].screenX;
-    });
+    modalContent.addEventListener(
+        "touchstart",
+        (e) => {
+            touchstartY = e.changedTouches[0].screenY;
+        },
+        { passive: true }
+    );
 
     modalContent.addEventListener("touchend", (e) => {
-        touchendX = e.changedTouches[0].screenX;
-        if (touchstartX > touchendX) {
+        touchendY = e.changedTouches[0].screenY;
+        if (touchstartY < touchendY) {
             modal.classList.remove("_active");
-            touchstartX = 0;
-            touchendX = 0;
+            touchstartY = 0;
+            touchendY = 0;
 
             //clear inputs
             for (let input of inputs) {
