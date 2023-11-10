@@ -76,4 +76,27 @@ export const openModal = (item) => {
             }
         }
     };
+
+    //swipe
+    const modalContent = modal.getElementsByClassName("modal-content")[0];
+    let touchstartX = 0;
+    let touchendX = 0;
+
+    modalContent.addEventListener("touchstart", (e) => {
+        touchstartX = e.changedTouches[0].screenX;
+    });
+
+    modalContent.addEventListener("touchend", (e) => {
+        touchendX = e.changedTouches[0].screenX;
+        if (touchstartX > touchendX) {
+            modal.classList.remove("_active");
+            touchstartX = 0;
+            touchendX = 0;
+
+            //clear inputs
+            for (let input of inputs) {
+                input.value = "";
+            }
+        }
+    });
 };
