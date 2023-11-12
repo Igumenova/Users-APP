@@ -84,26 +84,34 @@ export const openModal = (item) => {
         }
     };
 
-    //swipe
+     //swipe
     const modalContent = modal.getElementsByClassName("modal-content")[0];
     let touchstartY = 0;
 
-    modalContent.addEventListener("touchstart", (e) => {
-        touchstartY = e.changedTouches[0].screenY;
-    });
+    modalContent.addEventListener(
+        "touchstart",
+        (e) => {
+            touchstartY = e.changedTouches[0].screenY;
+        },
+        { passive: true }
+    );
 
-    modalContent.addEventListener("touchmove", (e) => {
-        const touchendY = e.changedTouches[0].screenY;
-        if (touchendY - touchstartY > 30) {
-            e.preventDefault();
-            modal.classList.remove("_active");
-            document.body.style.overflow = "auto";
-            touchstartY = 0;
+    modalContent.addEventListener(
+        "touchmove",
+        (e) => {
+            const touchendY = e.changedTouches[0].screenY;
+            if (touchendY - touchstartY > 30) {
+                e.preventDefault();
+                modal.classList.remove("_active");
+                document.body.style.overflow = "auto";
+                touchstartY = 0;
 
-            //clear inputs
-            for (let input of inputs) {
-                input.value = "";
+                //clear inputs
+                for (let input of inputs) {
+                    input.value = "";
+                }
             }
-        }
-    });
+        },
+        { passive: false }
+    );
 };
