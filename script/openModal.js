@@ -4,6 +4,8 @@ export const openModal = (item) => {
     const modal = document.querySelector(".modal");
     const inputs = modal.getElementsByClassName("modal__input");
 
+    document.body.style.overflow = "hidden";
+
     modal.classList.add("_active");
     modal
         .getElementsByClassName("modal__id")[0]
@@ -12,6 +14,8 @@ export const openModal = (item) => {
     //cancel button
     modal.getElementsByClassName("cancel")[0].addEventListener("click", () => {
         modal.classList.remove("_active");
+        document.body.style.overflow = "auto";
+
         //clear inputs
         for (let input of inputs) {
             input.value = "";
@@ -44,6 +48,7 @@ export const openModal = (item) => {
                 input.value = "";
             }
             modal.classList.remove("_active");
+            document.body.style.overflow = "auto";
 
             //add new info to card
             await redactUser(item.id, newData);
@@ -70,6 +75,8 @@ export const openModal = (item) => {
     window.onclick = (event) => {
         if (event.target === modal) {
             modal.classList.remove("_active");
+            document.body.style.overflow = "auto";
+
             //clear inputs
             for (let input of inputs) {
                 input.value = "";
@@ -80,22 +87,18 @@ export const openModal = (item) => {
     //swipe
     const modalContent = modal.getElementsByClassName("modal-content")[0];
     let touchstartY = 0;
-    let touchendY = 0;
 
-    modalContent.addEventListener(
-        "touchstart",
-        (e) => {
-            touchstartY = e.changedTouches[0].screenY;
-        },
-        { passive: true }
-    );
+    modalContent.addEventListener("touchstart", (e) => {
+        touchstartY = e.changedTouches[0].screenY;
+    });
 
-    modalContent.addEventListener("touchend", (e) => {
-        touchendY = e.changedTouches[0].screenY;
-        if (touchstartY < touchendY) {
+    modalContent.addEventListener("touchmove", (e) => {
+        const touchendY = e.changedTouches[0].screenY;
+        if (touchendY - touchstartY > 30) {
+            e.preventDefault();
             modal.classList.remove("_active");
+            document.body.style.overflow = "auto";
             touchstartY = 0;
-            touchendY = 0;
 
             //clear inputs
             for (let input of inputs) {
