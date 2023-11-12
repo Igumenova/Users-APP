@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     margin: 0;
     font-family: "Montserrat";
@@ -99,8 +100,6 @@ form {
     align-items: center;
     background-color: transparent;
     border: 0;
-
-    transition: opacity 0.1s;
 }
 .btn-edit:active,
 .btn-del:active {
@@ -123,19 +122,18 @@ form {
     bottom: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(0px);
     transform-origin: bottom;
-    transform: scaleY(0);
-    opacity: 0;
-    transition: transform 0.2s, opacity 0.2s;
+    transform: translateY(100%);
+    transition: transform 0.6s, backdrop-filter 0.2s;
 }
+
 .modal._active {
     display: block;
-    transform: scaleY(1);
+    backdrop-filter: blur(2px);
+    transform: translateY(0);
     transform-origin: bottom;
-    opacity: 1;
-    transition: transform 0.2s, opacity 0.2s;
-    transition-delay: 0.2s;
+    transition: transform 0.3s, backdrop-filter 0.6s;
 }
 
 .modal-content {
